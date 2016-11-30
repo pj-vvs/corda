@@ -23,6 +23,7 @@ import net.corda.node.utilities.AffinityExecutor
 import net.corda.node.utilities.configureDatabase
 import net.corda.node.utilities.databaseTransaction
 import net.corda.testing.freeLocalHostAndPort
+import net.corda.testing.node.MockServices
 import net.corda.testing.node.makeTestDataSourceProperties
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.jetbrains.exposed.sql.Database
@@ -58,7 +59,7 @@ class ArtemisMessagingTests {
     var messagingServer: ArtemisMessagingServer? = null
 
 
-    val networkMapCache = InMemoryNetworkMapCache()
+    val networkMapCache = InMemoryNetworkMapCache(MockServices())
 
     val rpcOps = object : RPCOps {
         override val protocolVersion: Int get() = throw UnsupportedOperationException()
